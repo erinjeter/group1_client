@@ -10,7 +10,7 @@ const Login = (props) => {
     fetch("http://localhost:3000/user/login", {
       method: "POST",
       body: JSON.stringify({
-        user: { email: email, password: password },
+        email: email, password: password,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
