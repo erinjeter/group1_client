@@ -18,8 +18,8 @@ const Sitebar = (props) => {
   };
 
   return (
-    <Navbar color="faded" light expand="md">
-      <NavbarBrand href="/">Poll Project</NavbarBrand>
+    <Navbar color="light" light expand="md">
+      <NavbarBrand href="/">Pollster</NavbarBrand>
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
