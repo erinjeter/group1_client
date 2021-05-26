@@ -11,7 +11,9 @@ const Signup = (props) => {
     fetch("http://localhost:3000/user/create", {
       method: "POST",
       body: JSON.stringify({
-        email: email, password: password, role: role ,
+        email: email,
+        password: password,
+        role: role,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -26,9 +28,9 @@ const Signup = (props) => {
 
   // Sets role through checkboxes
   const onValueChange = (e) => {
-    e.target.value === 'isUser' ? setRole("user") : setRole("admin");
-    console.log('e.target.value', e.target.value);
-}
+    e.target.value === "isUser" ? setRole("user") : setRole("admin");
+    console.log("e.target.value", e.target.value);
+  };
 
   return (
     <div>
@@ -50,23 +52,33 @@ const Signup = (props) => {
             value={password}
           ></Input>
         </FormGroup>
-        <FormGroup >
-            <Label htmlFor="role">Role:</Label>
-            <FormGroup check>
+        <FormGroup>
+          <Label htmlFor="role">Role:</Label>
+          <FormGroup check>
             <Label check>
-                <Input type="radio" name="role" value='isUser' defaultchecked onChange={(e) => onValueChange(e)}/>{' '}
-                User
+              <Input
+                type="radio"
+                name="role"
+                value="isUser"
+                defaultchecked
+                onChange={(e) => onValueChange(e)}
+              />{" "}
+              User
             </Label>
-            </FormGroup>
-            <FormGroup check>
+          </FormGroup>
+          <FormGroup check>
             <Label check>
-                <Input type="radio" name="role" value='isAdmin'  onChange={(e) => onValueChange(e)}/>
-                Admin
+              <Input
+                type="radio"
+                name="role"
+                value="isAdmin"
+                onChange={(e) => onValueChange(e)}
+              />
+              Admin
             </Label>
-            </FormGroup>
+          </FormGroup>
         </FormGroup>
 
-        
         <Button type="submit">Signup</Button>
       </Form>
     </div>
