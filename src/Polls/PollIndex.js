@@ -16,8 +16,8 @@ const PollIndex = (props) => {
   const [allPolls, setAllPolls] = useState([]);
 
   const fetchPolls = () => {
-    fetch("http://localhost:3000/user/create", {
-      method: "PUT",
+    fetch("http://localhost:3000/poll/getAll", {
+      method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -28,17 +28,17 @@ const PollIndex = (props) => {
         setAllPolls(json);
         console.log(json);
       });
-
-    // useEffect(() => {
-    //   fetchPolls();
-    // }, []);
-
-    return (
-      <div>
-        <PollDisplay allPolls={allPolls} fetchPolls={fetchPolls} />
-      </div>
-    );
   };
+
+  useEffect(() => {
+    fetchPolls();
+  }, []);
+
+  return (
+    <div>
+      <PollDisplay allPolls={allPolls} fetchPolls={fetchPolls} />
+    </div>
+  );
 };
 
 export default PollIndex;

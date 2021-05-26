@@ -1,8 +1,8 @@
 import { Card, CardBody, CardTitle, Button, CardSubtitle } from "reactstrap";
 
-const PollCard = ({ props }) => {
+const PollCard = (props) => {
   return (
-    <Card>
+    <Card key={props.poll.id}>
       <CardBody>
         <CardTitle>{props.poll.question}</CardTitle>
         <CardSubtitle></CardSubtitle>
