@@ -23,6 +23,7 @@ const Signup = (props) => {
       .then((data) => {
         console.log(data);
         props.updateToken(data.sessionToken);
+        localStorage.setItem("role", data.user.role); //-- shows the role in console log
       });
   };
 
