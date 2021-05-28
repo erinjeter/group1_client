@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Pie } from "react-chartjs-2";
-import { Container, Row, Col } from "reactstrap";
+import { Card, CardTitle, CardSubtitle, CardBody, CardImg } from "reactstrap";
 import PollDisplay from "../Polls/PollDisplay";
 
 const ResponseDisplay = (props) => {
@@ -27,32 +27,16 @@ const ResponseDisplay = (props) => {
     fetchResponses();
   }, []);
 
-  const NoResponses = () => {
-    return (
-      <div className="noResponses">
-        <h1>No Responses to display</h1>
-        <p></p>
-      </div>
-    );
-  };
-
-  const HasResponses = () => {
-    return (
-      <div className="responsesContainer">
-        <h1>Responses</h1>
-        <PollDisplay
-          responses={responses}
-          fetchResponses={fetchResponses}
-          token={props.token}
-        />
-      </div>
-    );
-  };
-
   return (
     <div className="main">
-      <Pie data={PollDisplay} />
-      {responses.length === 0 ? <NoResponses /> : <HasResponses />}
+      <Card>
+        <CardImg />
+        <CardBody>
+          <CardTitle tag="h5">Responses</CardTitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted"></CardSubtitle>
+          <Pie data={fetchResponses} />
+        </CardBody>
+      </Card>
     </div>
   );
 };
