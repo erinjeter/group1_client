@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Sitebar from "./Navbar";
 import Auth from "./Auth/Auth";
 import PollIndex from "./Polls/PollIndex";
-import ResponseIndex from "./Response/ResponseIndex";
 
 function App() {
   const [sessionToken, setSessionToken] = useState("");
@@ -35,7 +34,6 @@ function App() {
   return (
     <div className="App">
       <Sitebar clearToken={clearToken} />
-      <ResponseIndex />
       {protectedViews()}
     </div>
   );

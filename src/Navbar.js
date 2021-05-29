@@ -4,11 +4,9 @@ import {
   Navbar,
   NavbarBrand,
   Nav,
-  NavItem,
   Button,
   NavbarToggler,
   Collapse,
-  NavLink,
 } from "reactstrap";
 
 const Sitebar = (props) => {
@@ -24,9 +22,7 @@ const Sitebar = (props) => {
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
-          <NavItem>
-            <Button onClick={props.clearToken}>Logout</Button>
-          </NavItem>
+            <Button className="mr-5" onClick={props.clearToken}>Logout</Button>{' '}
         </Nav>
       </Collapse>
     </Navbar>
