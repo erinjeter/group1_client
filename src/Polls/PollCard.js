@@ -81,7 +81,6 @@ const PollCard = (props) => {
     setResultArray(data);
   }
 
-
   return (
     <>
     <Card key={props.poll.id}>
@@ -91,10 +90,12 @@ const PollCard = (props) => {
         </Alert>
         <CardTitle>{props.poll.question}</CardTitle>
         <CardSubtitle></CardSubtitle>
+
         <Button id="response1" onClick={selectResponse} disabled={readOnly||disableBtn}>{props.poll.response1}</Button>{' '}
         <Button id="response2" onClick={selectResponse} disabled={readOnly||disableBtn}>{props.poll.response2}</Button>{' '}
         <Button id="response3" onClick={selectResponse} disabled={readOnly||disableBtn}>{props.poll.response3}</Button>{' '}
         <Button id="response4" onClick={selectResponse} disabled={readOnly||disableBtn}>{props.poll.response4}</Button>{' '}        
+
       </CardBody>
     </Card>
 
