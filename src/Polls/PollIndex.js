@@ -10,17 +10,20 @@ import {
   Input,
   CardColumns,
 } from "reactstrap";
+import DisplayResponse from "../Response/DisplayResponse";
 import PollDisplay from "./PollDisplay";
 
 const PollIndex = (props) => {
   const [allPolls, setAllPolls] = useState([]);
+  const [modal, setModal] = useState(false);
+
 
   const fetchPolls = () => {
     fetch("http://localhost:3000/poll/getAll", {
       method: "GET",
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
+        Authorization: props.token,
       }),
     })
       .then((res) => res.json())
@@ -36,7 +39,8 @@ const PollIndex = (props) => {
 
   return (
     <div>
-      <PollDisplay allPolls={allPolls} fetchPolls={fetchPolls} />
+      {/* <Button color="warning" >See Poll Results</Button> */}
+      <PollDisplay allPolls={allPolls} token={props.token}/>
     </div>
   );
 };

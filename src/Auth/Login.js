@@ -10,7 +10,8 @@ const Login = (props) => {
     fetch("http://localhost:3000/user/login", {
       method: "POST",
       body: JSON.stringify({
-        email: email, password: password,
+        email: email,
+        password: password,
       }),
       headers: new Headers({
         "Content-Type": "application/json",
@@ -20,6 +21,7 @@ const Login = (props) => {
       .then((data) => {
         props.updateToken(data.sessionToken);
         console.log(data.sessionToken);
+        localStorage.setItem("role", data.user.role); //-- shows the role in console log
       });
   };
 
