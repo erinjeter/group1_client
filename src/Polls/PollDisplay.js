@@ -77,7 +77,7 @@ const PollDisplay = (props) => {
           <Button color="warning" onClick={display}>
             See All Results
           </Button>
-          {barDisplays()}
+          {barDisplays}
           {/* <BarResult data={arrResults[0]} question={props.allPolls[0].question} responses={[props.allPolls[0].response1,props.allPolls[0].response2,props.allPolls[0].response3,props.allPolls[0].response4]} />  */}
         </>
       ) : (
