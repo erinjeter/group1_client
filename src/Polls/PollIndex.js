@@ -39,7 +39,11 @@ const PollIndex = (props) => {
   return (
     <div>
       <Button color="warning">See Poll Results</Button>
-      <PollDisplay allPolls={allPolls} token={props.token} />
+      <PollDisplay
+        allPolls={allPolls}
+        token={props.token}
+        fetchPolls={fetchPolls}
+      />
     </div>
   );
 };

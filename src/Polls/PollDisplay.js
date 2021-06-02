@@ -63,7 +63,11 @@ const PollDisplay = (props) => {
       <CardColumns>
         {props.allPolls?.map((poll) => (
           <CardColumns>
-            <PollCard poll={poll} token={props.token} />
+            <PollCard
+              poll={poll}
+              token={props.token}
+              fetchPolls={props.fetchPolls}
+            />
           </CardColumns>
         ))}
       </CardColumns>

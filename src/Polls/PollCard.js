@@ -19,7 +19,11 @@ const PollCard = (props) => {
   const [disableBtn, setDisableBtn] = useState(false);
   const [resultArray, setResultArray] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [editPoll, setEditPoll] = useState({});
 
+  const updatePoll = (poll) => {
+    setEditPoll(poll);
+  };
   // SELECT RESPONSE FROM POLL //
   const selectResponse = (event) => {
     console.log("click on ", event.target.id);
@@ -81,6 +85,21 @@ const PollCard = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const deletePoll = () => {
+    fetch(`http://localhost:3000/poll/delete/${props.poll.id}`, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Poll Deleted", data);
+        props.fetchPolls();
+      });
+  };
+
   const parseData = (data) => {
     console.log("in parse ");
     setResultArray(data);
@@ -109,21 +128,21 @@ const PollCard = (props) => {
             disabled={readOnly || disableBtn}
           >
             {props.poll.response1}
-          </Button>{" "}
+          </Button>
           <Button
             id="response2"
             onClick={selectResponse}
             disabled={readOnly || disableBtn}
           >
             {props.poll.response2}
-          </Button>{" "}
+          </Button>
           <Button
             id="response3"
             onClick={selectResponse}
             disabled={readOnly || disableBtn}
           >
             {props.poll.response3}
-          </Button>{" "}
+          </Button>
           <Button
             id="response4"
             onClick={selectResponse}
@@ -135,13 +154,27 @@ const PollCard = (props) => {
         <Button
           onClick={(e) => {
             updateOn();
+            updatePoll(props.poll);
           }}
         >
           Edit Poll
         </Button>
         {showModal ? (
-          <EditPoll closeModal={updateOff} openModal={updateOn} />
+          <EditPoll
+            closeModal={updateOff}
+            openModal={updateOn}
+            poll={props.poll}
+            fetchPolls={props.fetchPolls}
+            editPoll={editPoll}
+          />
         ) : null}
+        <Button
+          onClick={(e) => {
+            deletePoll(props.poll);
+          }}
+        >
+          Delete Poll
+        </Button>
       </Card>
 
       {displayResultUser ? (
