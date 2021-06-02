@@ -6,6 +6,8 @@ import {
   CardTitle,
   Button,
   CardSubtitle,
+  Row,
+  Col
 } from "reactstrap";
 import BarResult from "../Response/BarResult";
 import EditPoll from "./EditPoll";
@@ -120,29 +122,31 @@ const PollCard = (props) => {
           <Alert color="success" isOpen={alert}>
             {msg}
           </Alert>
-          <CardTitle>{props.poll.question}</CardTitle>
-          <CardSubtitle></CardSubtitle>
+          <CardTitle style={{textAlign: "center"}}>{props.poll.question}</CardTitle>
+          <Row>
+            <Col style={{textAlign: "center"}}>
+            
           <Button
             id="response1"
             onClick={selectResponse}
             disabled={readOnly || disableBtn}
           >
             {props.poll.response1}
-          </Button>
+          </Button>{' '}
           <Button
             id="response2"
             onClick={selectResponse}
             disabled={readOnly || disableBtn}
           >
             {props.poll.response2}
-          </Button>
+          </Button>{' '}
           <Button
             id="response3"
             onClick={selectResponse}
             disabled={readOnly || disableBtn}
           >
             {props.poll.response3}
-          </Button>
+          </Button>{' '}
           <Button
             id="response4"
             onClick={selectResponse}
@@ -150,31 +154,45 @@ const PollCard = (props) => {
           >
             {props.poll.response4}
           </Button>
+          </Col>
+          </Row>
         </CardBody>
-        <Button
-          onClick={(e) => {
-            updateOn();
-            updatePoll(props.poll);
-          }}
-        >
-          Edit Poll
-        </Button>
-        {showModal ? (
-          <EditPoll
-            closeModal={updateOff}
-            openModal={updateOn}
-            poll={props.poll}
-            fetchPolls={props.fetchPolls}
-            editPoll={editPoll}
-          />
-        ) : null}
-        <Button
-          onClick={(e) => {
-            deletePoll(props.poll);
-          }}
-        >
-          Delete Poll
-        </Button>
+        {localStorage.role === "admin" ? (
+          <>
+          <Row style={{justifyContent: "center"}}>
+            <Button
+            color="outline-success"
+            style={{width: "120px", marginLeft: "10px"}}
+              onClick={(e) => {
+                updateOn();
+                updatePoll(props.poll);
+              }}
+            >
+              Edit Poll
+            </Button>
+            {showModal ? (
+              <EditPoll
+                closeModal={updateOff}
+                openModal={updateOn}
+                poll={props.poll}
+                fetchPolls={props.fetchPolls}
+                editPoll={editPoll}
+              />
+            ) : null}
+            <Button
+            color="outline-danger"
+            style={{width: "120px", marginLeft: "10px"}}
+              onClick={(e) => {
+                deletePoll(props.poll);
+              }}
+            >
+              Delete Poll
+            </Button>
+          </Row>
+          </>
+      ) : (
+        <></>
+      )}
       </Card>
 
       {displayResultUser ? (
