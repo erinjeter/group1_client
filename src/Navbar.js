@@ -6,6 +6,8 @@ import {
   Nav,
   Button,
   NavbarToggler,
+  NavItem,
+  NavLink,
   Collapse,
 } from "reactstrap";
 
@@ -22,7 +24,12 @@ const Sitebar = (props) => {
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
-            <Button className="mr-5" onClick={props.clearToken}>Logout</Button>{' '}
+          <Button className="mr-5">Add Poll</Button>{" "}
+        </Nav>
+        <Nav className="ml-auto" navbar>
+          <Button className="mr-5" onClick={props.clearToken}>
+            Logout
+          </Button>{" "}
         </Nav>
       </Collapse>
     </Navbar>
