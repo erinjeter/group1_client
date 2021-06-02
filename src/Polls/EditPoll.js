@@ -8,9 +8,10 @@ const EditPoll = (props) => {
   const [editResponse3, setEditResponse3] = useState(props.poll.response3);
   const [editResponse4, setEditResponse4] = useState(props.poll.response4);
 
-  const pollUpdate = (event) => {
-    event.preventDefault();
-    fetch(`http://localhost:3000/poll/update/${props.poll.id}`, {
+  console.log(props.editPoll);
+
+  const pollUpdate = () => {
+    fetch(`http://localhost:3000/poll/update/${props.editPoll.id}`, {
       method: "PUT",
       body: JSON.stringify({
         question: editQuestion,
@@ -23,16 +24,19 @@ const EditPoll = (props) => {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       }),
-    }).then((res) => {
-      console.log(`updated poll with id ${props.id}`);
-      props.fetchPolls();
-    });
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        props.fetchPolls();
+        props.closeModal();
+      });
   };
 
   return (
     <Form onSubmit={pollUpdate}>
       <FormGroup>
-        <Label htmlfor="poll">
+        <Label htmlFor="poll">
           Edit Poll:
           <Input
             name="question"
@@ -59,6 +63,9 @@ const EditPoll = (props) => {
             value={editResponse4}
             onChange={(e) => setEditResponse4(e.target.value)}
           />
+          <Button onClick={(e) => pollUpdate(e.target.value)}>
+            Update Poll
+          </Button>
         </Label>
       </FormGroup>
     </Form>

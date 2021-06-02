@@ -17,7 +17,6 @@ const PollIndex = (props) => {
   const [allPolls, setAllPolls] = useState([]);
   const [modal, setModal] = useState(false);
 
-
   const fetchPolls = () => {
     fetch("http://localhost:3000/poll/getAll", {
       method: "GET",
@@ -39,8 +38,12 @@ const PollIndex = (props) => {
 
   return (
     <div>
-      {/* <Button color="warning" >See Poll Results</Button> */}
-      <PollDisplay allPolls={allPolls} token={props.token}/>
+      <Button color="warning">See Poll Results</Button>
+      <PollDisplay
+        allPolls={allPolls}
+        token={props.token}
+        fetchPolls={fetchPolls}
+      />
     </div>
   );
 };

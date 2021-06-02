@@ -20,7 +20,6 @@ const Login = (props) => {
       .then((response) => response.json())
       .then((data) => {
         props.updateToken(data.sessionToken);
-        console.log(data.sessionToken);
         localStorage.setItem("role", data.user.role); //-- shows the role in console log
       });
   };
