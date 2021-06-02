@@ -8,6 +8,7 @@ import {
   CardSubtitle,
 } from "reactstrap";
 import BarResult from "../Response/BarResult";
+import EditPoll from "./EditPoll";
 
 const PollCard = (props) => {
   // const [nbVotes, setNbVotes] = useState("");
@@ -17,6 +18,7 @@ const PollCard = (props) => {
   const [readOnly, setReadOnly] = useState(true);
   const [disableBtn, setDisableBtn] = useState(false);
   const [resultArray, setResultArray] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   // SELECT RESPONSE FROM POLL //
   const selectResponse = (event) => {
@@ -84,6 +86,14 @@ const PollCard = (props) => {
     setResultArray(data);
   };
 
+  const updateOff = () => {
+    setShowModal(false);
+  };
+
+  const updateOn = () => {
+    setShowModal(true);
+  };
+
   return (
     <>
       <Card key={props.poll.id}>
@@ -120,8 +130,18 @@ const PollCard = (props) => {
             disabled={readOnly || disableBtn}
           >
             {props.poll.response4}
-          </Button>{" "}
+          </Button>
         </CardBody>
+        <Button
+          onClick={(e) => {
+            updateOn();
+          }}
+        >
+          Edit Poll
+        </Button>
+        {showModal ? (
+          <EditPoll closeModal={updateOff} openModal={updateOn} />
+        ) : null}
       </Card>
 
       {displayResultUser ? (

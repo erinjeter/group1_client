@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { CardColumns, Card, Button } from "reactstrap";
+import { CardColumns, Button } from "reactstrap";
 import PollCard from "./PollCard";
 import BarResult from "../Response/BarResult";
+import React from "react";
 
 const PollDisplay = (props) => {
   let arrResults = [];
@@ -61,10 +61,10 @@ const PollDisplay = (props) => {
   return (
     <div>
       <CardColumns>
-        {props.allPolls.map((poll) => (
-          <>
+        {props.allPolls?.map((poll) => (
+          <CardColumns>
             <PollCard poll={poll} token={props.token} />
-          </>
+          </CardColumns>
         ))}
       </CardColumns>
 

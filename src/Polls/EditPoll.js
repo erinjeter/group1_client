@@ -7,6 +7,7 @@ const EditPoll = (props) => {
   const [editResponse2, setEditResponse2] = useState(props.poll.response2);
   const [editResponse3, setEditResponse3] = useState(props.poll.response3);
   const [editResponse4, setEditResponse4] = useState(props.poll.response4);
+  // const [showModal, setShowModal] = useState(false);
 
   const pollUpdate = (event) => {
     event.preventDefault();
@@ -26,6 +27,7 @@ const EditPoll = (props) => {
     }).then((res) => {
       console.log(`updated poll with id ${props.id}`);
       props.fetchPolls();
+      props.closeModal();
     });
   };
 
@@ -59,6 +61,9 @@ const EditPoll = (props) => {
             value={editResponse4}
             onChange={(e) => setEditResponse4(e.target.value)}
           />
+          <Button onClick={(e) => pollUpdate(e.target.value)}>
+            Update Poll
+          </Button>
         </Label>
       </FormGroup>
     </Form>
